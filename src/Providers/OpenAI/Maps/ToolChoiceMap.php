@@ -21,9 +21,7 @@ class ToolChoiceMap
 
             return [
                 'type' => 'function',
-                'function' => [
-                    'name' => $toolChoice,
-                ],
+                'name' => $toolChoice,
             ];
         }
 
