@@ -34,7 +34,7 @@ export default defineConfig({
       "meta",
       {
         property: "og:image",
-        content: "https://prismphp.com/assets/og-image.png",
+        content: "https://prismphp.com/assets/og-image.png?v=2",
       },
     ],
 
@@ -55,7 +55,7 @@ export default defineConfig({
       "meta",
       {
         name: "twitter:image",
-        content: "https://prismphp.com/assets/og-image.png",
+        content: "https://prismphp.com/assets/og-image.png?v=2",
       },
     ],
   ],
