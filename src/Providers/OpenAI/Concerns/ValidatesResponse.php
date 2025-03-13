@@ -15,7 +15,7 @@ trait ValidatesResponse
         if ($response->getStatusCode() === 429) {
             throw PrismRateLimitedException::make(
                 rateLimits: $this->processRateLimits($response),
-                retryAfter: is_null($response->header('retry-after')) ? null : (int) $response->header('retry-after'),
+                retryAfter: $response->header('retry-after') === '' ? null : (int) $response->header('retry-after'),
             );
         }
 
