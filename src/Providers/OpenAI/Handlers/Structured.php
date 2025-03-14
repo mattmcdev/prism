@@ -102,6 +102,7 @@ class Structured
                     'previous_response_id' => $request->providerMeta(Provider::OpenAI, 'previous_response_id'),
                     'temperature' => $request->temperature(),
                     'top_p' => $request->topP(),
+                    'truncation' => $request->providerMeta(Provider::OpenAI, 'truncation'),
                     'text' => [
                         'format' => $responseFormat,
                     ],
