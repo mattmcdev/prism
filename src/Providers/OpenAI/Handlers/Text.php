@@ -52,7 +52,10 @@ class Text
 
         $responseMessage = new AssistantMessage(
             data_get($data, 'output.{last}.content.0.text') ?? '',
-            ToolCallMap::map(array_filter(data_get($data, 'output', []), fn (array $output): bool => $output['type'] === 'function_call')),
+            ToolCallMap::map(
+                array_filter(data_get($data, 'output', []), fn (array $output): bool => $output['type'] === 'function_call'),
+                array_filter(data_get($data, 'output', []), fn (array $output): bool => $output['type'] === 'reasoning')[0] ?? null,
+            ),
         );
 
         $this->responseBuilder->addResponseMessage($responseMessage);
@@ -73,7 +76,10 @@ class Text
     {
         $toolResults = $this->callTools(
             $request->tools(),
-            ToolCallMap::map(array_filter(data_get($data, 'output', []), fn (array $output): bool => $output['type'] === 'function_call')),
+            ToolCallMap::map(
+                array_filter(data_get($data, 'output', []), fn (array $output): bool => $output['type'] === 'function_call'),
+                array_filter(data_get($data, 'output', []), fn (array $output): bool => $output['type'] === 'reasoning')[0] ?? null,
+            ),
         );
 
         $request->addMessage(new ToolResultMessage($toolResults));

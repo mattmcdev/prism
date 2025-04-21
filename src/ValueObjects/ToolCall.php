@@ -14,6 +14,8 @@ class ToolCall
         public readonly string $name,
         protected string|array $arguments,
         public readonly ?string $callId = null,
+        public readonly ?string $reasoningId = null,
+        public readonly ?array $reasoningSummary = null,
     ) {}
 
     /**

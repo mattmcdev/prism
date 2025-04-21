@@ -107,6 +107,13 @@ class MessageMap
         if ($message->toolCalls !== []) {
             array_push(
                 $this->mappedMessages,
+                ...array_filter(
+                    array_map(fn (ToolCall $toolCall): array => is_null($toolCall->reasoningId) ? null : [
+                        'type' => 'reasoning',
+                        'id' => $toolCall->reasoningId,
+                        'summary' => $toolCall->reasoningSummary,
+                    ], $message->toolCalls)
+                ),
                 ...array_map(fn (ToolCall $toolCall): array => [
                     'id' => $toolCall->id,
                     'call_id' => $toolCall->callId,
